@@ -13,13 +13,20 @@ User.init(
       autoIncrement: true,
     },
     pogo_username: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(15),
       allowNull: false,
       unique: true,
+      validate: {
+        len: [4, 15]
+      },
     },
     discord_username: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(32),
       allowNull: false,
+      unique: true,
+      validate: {
+        len: [2, 32]
+      },
     },
     location: {
       type: DataTypes.STRING,
