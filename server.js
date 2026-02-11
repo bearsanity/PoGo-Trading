@@ -5,7 +5,7 @@ const path = require('path');
 const hbs = exphbs.create({});
 require('dotenv').config();
 // It knows to use index because it's a default file name that it will look for, rather than usign the individual model files
-const { User, Trade, Pokemon, TradeWantedPokemon, TradeOfferedPokemon, sequelize } = require('./models');
+const { User, Trade, Pokemon, sequelize } = require('./models'); // Don't import junction models
 
 //=================== Set up express app ===================
 const app = express();
@@ -17,9 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./controllers/')); // Dont forget to finish this
+//app.use(require('./controllers/')); // Dont forget to finish this
 
 //=================== Start server ===================
+sequelize.sync();
 app.listen(PORT, () => {
     console.log('Server listening on: http://localhost:' + PORT);
 });
