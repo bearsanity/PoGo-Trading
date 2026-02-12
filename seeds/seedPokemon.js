@@ -58,7 +58,7 @@ async function seedPokemon() {
         type1: pokemon.types[0].type.name,
         type2: (pokemon.types[1]) ? pokemon.types[1].type.name : null
     }));
-    Pokemon.bulkCreate(pokemonData);
+    await Pokemon.bulkCreate(pokemonData);
     await sequelize.close(); //Stops the script from hanging
 };
 
