@@ -26,6 +26,11 @@ Trade.init(
       allowNull: true,
       defaultValue: 'No notes'
     },
+    mirror: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
 
   },
   {

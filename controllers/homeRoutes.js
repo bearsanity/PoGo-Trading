@@ -7,7 +7,7 @@ router.get('/', async (req, res) =>{
             order: [['id', 'ASC']],
         });
 
-        const pokemon = pokemonData.map((pokemon) => pokemon.get({ plain: true }));
+        const pokemon = pokemonData.map((pokemon) => pokemon.get({ plain: true })); // turns it into a json object so handlebars can understand it
 
         res.render('home', { pokemon });
 
