@@ -1,1 +1,23 @@
+<div class ="search-section">
+    <input type="text" placeholder="Search trades (e.g. Whimsicott)">
+    <button>Search</button>
+</div>
 
+<div class="create-section">
+    <a href="/create-trade">
+        <button>Post a Trade</button>
+    </a>
+</div>
+
+<div class="recent-trades">
+    <h2>Recent Trades</h2>
+    {{#if trades}}
+    {{#each trades}}
+        <div class="trade-card">
+            <p>Trade details go here</p>
+        </div>
+    {{/each}}
+    {{else}}
+     <p>No trades yet! Be the first to post one.</p>
+    {{/if}}
+</div>
