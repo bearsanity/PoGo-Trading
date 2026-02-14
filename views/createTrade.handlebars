@@ -1,0 +1,52 @@
+{{!-- Form to create trade --}}
+
+<div class="form-container">
+  {{!-- form action is where to send the data, method is how to send the data --}}
+  <form action="/create-trade" method="POST"> 
+    <label for="username"> Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+
+    {{!--Loops through the pokemon const set inside the get route in homeRoutes  --}}
+    <label for="pokemon_wanted"> Pokemon Wanted:</label><br>
+    <select id="pokemon_wanted" name="pokemon_wanted" multiple>
+    {{#each pokemon}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+    </select><br>
+
+    <label for="pokemon_offered"> Pokemon Offered:</label><br>
+    <select id="pokemon_offered" name="pokemon_offered" multiple>
+    {{#each pokemon}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+    </select><br>
+  
+    {{!-- value = true means if checked it returns true, otherwise it returns nothing --}}
+    <label for="mirror_trade">Mirror trade</label><br>
+    <input type="checkbox" id="mirror_trade" name="mirror_trade" value="true">
+
+    <label for="notes">Additional notes</label><br>
+    <textarea id="notes" name="notes" rows="4"></textarea>
+
+    <button type="submit">Create Trade</button>
+
+
+
+  </form>
+</div>
+
+
+{{!-- To import choices.js for the dropdown selector --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+  const wantedChoices = new Choices('#pokemon_wanted', {
+    searchEnabled: true,
+    searchPlaceholderValue: 'Search pokemon...'
+  });
+  
+  const offeredChoices = new Choices('#pokemon_offered', {
+    searchEnabled: true,
+    searchPlaceholderValue: 'Search pokemon...'
+  });
+</script>

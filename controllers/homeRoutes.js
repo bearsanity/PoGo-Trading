@@ -16,4 +16,12 @@ router.get('/', async (req, res) =>{
  }
 });
 
+router.get('/create-trade', async (req, res) => {
+    res.render('createTrade');
+});
+
+router.post('/create-trade', async (req,res) => {
+    const {}
+})
+
 module.exports = router;
