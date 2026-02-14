@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/homeRoutes'));
 
 //=================== Start server ===================
-sequelize.sync();
+sequelize.sync({});
 app.listen(PORT, () => {
     console.log('Server listening on: http://localhost:' + PORT);
 });

@@ -22,7 +22,7 @@ User.init(
     },
     discord_username: {
       type: DataTypes.STRING(32),
-      allowNull: false,
+      //allowNull: false,
       unique: true,
       validate: {
         len: [2, 32]
@@ -35,7 +35,7 @@ User.init(
     },
      level: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      //allowNull: false,
     },
   },
   {

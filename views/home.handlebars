@@ -9,12 +9,32 @@
     </a>
 </div>
 
+{{!-- Adds the cards for the recent trades to the home page --}}
 <div class="recent-trades">
     <h2>Recent Trades</h2>
     {{#if trades}}
     {{#each trades}}
         <div class="trade-card">
-            <p>Trade details go here</p>
+           <p><strong>Wants:</strong></p>
+           <ul> 
+            {{#each this.wantedPokemon}}
+            <li>{{this.name}}</li>
+            {{/each}}
+            </ul>
+           
+           <p><strong>Offering:</strong></p>
+           <ul> 
+            {{#each this.offeredPokemon}}
+            <li>{{this.name}}</li>
+            {{/each}}
+            </ul>
+
+            {{#if this.notes}}
+            <p><strong>Notes:</strong>
+            {{this.notes}}</p>
+            {{/if}}
+
+            <p><strong>Posted by:</strong> {{this.user.pogo_username}}</p>
         </div>
     {{/each}}
     {{else}}
