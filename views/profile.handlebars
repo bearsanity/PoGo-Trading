@@ -1,0 +1,37 @@
+<div class="profile-container">
+    <h2>{{username}}'s Trades</h2>
+
+    {{#if trades}}
+        <div class="profile-trades">
+            {{#each trades}}
+                <div class="trade-card">
+                    <p><strong>Wants:</strong></p>
+                    <div class="pokemon-list">
+                        {{#each this.wantedPokemon}}
+                            <div class="pokemon-item">
+                                <img src="{{this.sprite_url}}" alt="{{this.name}}" class="pokemon-sprite">
+                                <span>{{this.name}}</span>
+                            </div>
+                        {{/each}}
+                    </div>
+                    
+                    <p><strong>Offering:</strong></p>
+                    <div class="pokemon-list">
+                        {{#each this.offeredPokemon}}
+                            <div class="pokemon-item">
+                                <img src="{{this.sprite_url}}" alt="{{this.name}}" class="pokemon-sprite">
+                                <span>{{this.name}}</span>
+                            </div>
+                        {{/each}}
+                    </div>
+
+                    {{#if this.notes}}
+                        <p><strong>Notes:</strong> {{this.notes}}</p>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div> 
+    {{else}}
+        <p>No trades yet!</p>
+    {{/if}}
+</div>

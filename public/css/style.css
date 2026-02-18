@@ -1,0 +1,349 @@
+/* Pokemon-themed colors */
+:root {
+  --pokemon-yellow: #FFCB05;
+  --pokemon-blue: #3D7DCA;
+  --pokemon-dark-blue: #003A70;
+  --bg-gradient-top: #B8E986;
+  --bg-gradient-bottom: #5DADE2;
+  --card-bg: #ffffff;
+  --text-dark: #2C3E50;
+  --border-color: #E0E0E0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, var(--pokemon-blue) 0%, var(--pokemon-dark-blue) 100%);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  color: var(--pokemon-yellow);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Search and Create sections */
+.search-section, .create-section {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.search-section {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-section input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.search-section input:focus {
+  outline: none;
+  border-color: var(--pokemon-blue);
+}
+
+button, .create-section a button {
+  background: var(--pokemon-yellow);
+  color: var(--pokemon-dark-blue);
+  border: 3px solid var(--pokemon-dark-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: var(--pokemon-dark-blue);
+  color: var(--pokemon-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.create-section {
+  text-align: center;
+}
+
+/* Recent Trades */
+.recent-trades {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.recent-trades h2 {
+  color: var(--pokemon-blue);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  grid-column: 1 / -1;
+}
+
+/* Trade Cards */
+.trade-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 3px solid var(--pokemon-blue);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.trade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.trade-card strong {
+  color: var(--pokemon-blue);
+  font-size: 0.85rem;
+}
+
+.trade-card p {
+  margin: 0.5rem 0;
+}
+
+/* Pokemon List with Sprites */
+.pokemon-list {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  flex-wrap: wrap; /* Then wrap to next column */
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  max-height: 150px; /* Height of 2 pokemon items (adjust as needed) */
+}
+
+.pokemon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: auto; /* Let items take natural width */
+}
+
+.pokemon-sprite {
+  width: 50px;
+  height: 50px;
+  image-rendering: pixelated;
+}
+
+.pokemon-item span {
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  white-space: nowrap; /* Prevent name wrapping */
+}
+
+/* Form Container */
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.form-container h2 {
+  color: var(--pokemon-blue);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Form Elements */
+form label {
+  display: block;
+  color: var(--pokemon-dark-blue);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--pokemon-blue);
+}
+
+form select[multiple] {
+  min-height: 150px;
+}
+
+form input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Choices.js Styling */
+.choices {
+  margin-bottom: 1rem;
+}
+
+.choices__inner {
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.choices__inner:focus {
+  border-color: var(--pokemon-blue);
+}
+
+.choices__item--selectable {
+  text-transform: capitalize;
+}
+
+.trade-card a {
+  color: var(--pokemon-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.trade-card a:hover {
+  text-decoration: underline;
+  color: var(--pokemon-dark-blue);
+}
+
+/* Profile Page */
+.profile-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.profile-container h2 {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  color: var(--pokemon-blue);
+  margin-bottom: 0;
+}
+
+.profile-trades {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.header-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-link:hover h1 {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 1200px) {
+  .profile-trades {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .profile-trades {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-trades {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive - adjust grid columns */
+@media (max-width: 1200px) {
+  .recent-trades {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .recent-trades {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .search-section {
+    flex-direction: column;
+  }
+  
+  main {
+    padding: 0 0.5rem;
+  }
+  
+  .form-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .recent-trades {
+    grid-template-columns: 1fr;
+  }
+}

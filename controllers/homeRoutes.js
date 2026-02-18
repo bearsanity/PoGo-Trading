@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Pokemon, User, Trade, TradeWantedPokemon, TradeOfferedPokemon  } = require('../models');
 
+//==================== Homepage ====================
 router.get('/', async (req, res) =>{
     try {
         const tradeData = await Trade.findAll({
@@ -20,14 +21,16 @@ router.get('/', async (req, res) =>{
     }
 });
 
+//==================== Trade form ====================
 router.get('/create-trade', async (req, res) => {
-  const pokemonData = await Pokemon.findAll({
-    order: [['pokedex_number', 'ASC']]
-  });
-  const pokemon = pokemonData.map(p => p.get({ plain: true }));
+    const pokemonData = await Pokemon.findAll({
+        order: [['pokedex_number', 'ASC']]
+    });
+    const pokemon = pokemonData.map(p => p.get({ plain: true }));
   
-  res.render('createTrade', { pokemon });  // ← Passing 'pokemon' here
+    res.render('createTrade', { pokemon });  // Passing 'pokemon' here
 });
+
 
 router.post('/create-trade', async (req, res) => {
   try {
@@ -70,6 +73,39 @@ router.post('/create-trade', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+
+//==================== Homepage ====================
+router.get('/profile/:username', async (req, res) => {
+    try {
+        // Get user if it exists
+        const user = await User.findOne({
+            where: { pogo_username: req.params.username }
+        });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        };
+
+        const tradeData = await Trade.findAll({
+            where: { user_id: user.id },
+            include: [
+                { model: Pokemon, as: 'wantedPokemon' },
+                { model: Pokemon, as: 'offeredPokemon' }
+            ]
+        });
+
+        //Need to map the data so handlebars can read it
+        const trades = tradeData.map(trade => trade.get({ plain: true }));
+
+        res.render('profile', {
+            username: user.pogo_username,
+            trades
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;

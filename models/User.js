@@ -1,4 +1,4 @@
-
+//allow nulls commented out because this wont work until I have user accounts
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 

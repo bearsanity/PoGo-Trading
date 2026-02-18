@@ -11,30 +11,37 @@
 
 {{!-- Adds the cards for the recent trades to the home page --}}
 <div class="recent-trades">
-    <h2>Recent Trades</h2>
+    <h2>Recently Posted Trades</h2>
     {{#if trades}}
     {{#each trades}}
         <div class="trade-card">
            <p><strong>Wants:</strong></p>
-           <ul> 
+           <div class="pokemon-list">
             {{#each this.wantedPokemon}}
-            <li>{{this.name}}</li>
+                <div class="pokemon-item">
+                    <img src="{{this.sprite_url}}" alt="{{this.name}}" class="pokemon-sprite">
+                    <span>{{this.name}}</span>
+                </div>
             {{/each}}
-            </ul>
+            </div>
            
            <p><strong>Offering:</strong></p>
-           <ul> 
+           <div class="pokemon-list"> 
             {{#each this.offeredPokemon}}
-            <li>{{this.name}}</li>
+                <div class="pokemon-item">
+                    <img src="{{this.sprite_url}}" alt="{{this.name}}" class="pokemon-sprite">
+                    <span>{{this.name}}</span>
+                </div>
             {{/each}}
-            </ul>
+            </div>
 
             {{#if this.notes}}
             <p><strong>Notes:</strong>
-            {{this.notes}}</p>
+                {{this.notes}}</p>
             {{/if}}
-
-            <p><strong>Posted by:</strong> {{this.user.pogo_username}}</p>
+            
+            {{!-- This will bring the user to the persons profile when clicking the name --}}
+            <p><strong>Posted by:</strong> <a href="/profile/{{this.user.pogo_username}}">{{this.user.pogo_username}}</a></p>
         </div>
     {{/each}}
     {{else}}
