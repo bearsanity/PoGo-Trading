@@ -4,17 +4,46 @@ const { Pokemon, User, Trade, TradeWantedPokemon, TradeOfferedPokemon  } = requi
 //==================== Homepage ====================
 router.get('/', async (req, res) =>{
     try {
-        const tradeData = await Trade.findAll({
-        limit: 4,
-        order: [['created_at', 'DESC']],
-        include: [
-            { model: User },
-            { model: Pokemon, as: 'wantedPokemon' },
-            { model: Pokemon, as: 'offeredPokemon' }
-        ]
-    });
+        const searchTerm = req.query.search; // Get the searched pokemon from url
+
+        let tradeData; //let so I can reassign it in the if statements
+            
+        // Get all pokemon for the search dropdown
+        const pokemonData = await Pokemon.findAll({
+            order: [['name', 'ASC']]
+         });
+        const pokemon = pokemonData.map(p => p.get({ plain: true }));
+        // This will replace the recent trades section with search results once a search is made
+        if (searchTerm) {
+            tradeData = await Trade.findAll({
+                order: [['created_at', 'ASC']],
+                include: [
+                { model: User },
+                { model: Pokemon, 
+                    as: 'wantedPokemon',
+                    where: {
+                        name: searchTerm
+                    } 
+                },
+                { model: Pokemon, as: 'offeredPokemon' },
+
+            ]
+            })
+
+        } else {
+            tradeData = await Trade.findAll({
+            limit: 4,
+            order: [['created_at', 'DESC']],
+            include: [
+                { model: User },
+                { model: Pokemon, as: 'wantedPokemon' },
+                { model: Pokemon, as: 'offeredPokemon' }
+            ]
+            });
+        }
+
         const trades = tradeData.map(trade => trade.get({ plain: true }));
-        res.render('home', { trades });
+        res.render('home', { trades, pokemon });
 
     } catch(err) {
     res.status(500).json(err);

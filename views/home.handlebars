@@ -1,6 +1,13 @@
-<div class ="search-section">
-    <input type="text" placeholder="Search trades (e.g. Whimsicott)">
-    <button>Search</button>
+<div class="search-section">
+  <form action="/" method="GET">
+    <select id="search_pokemon" name="search">
+      <option value="">Search by Pokemon...(e.g. Whimsicott)</option>
+      {{#each pokemon}}
+        <option value="{{this.name}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+    <button type="submit">Search</button>
+  </form>
 </div>
 
 <div class="create-section">
@@ -48,3 +55,12 @@
      <p>No trades yet! Be the first to post one.</p>
     {{/if}}
 </div>
+
+{{!-- Importing choices to make the search a searchable dropdown --}}
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+  const searchChoices = new Choices('#search_pokemon', {
+    searchEnabled: true,
+    searchPlaceholderValue: 'Type to search...'
+  });
+</script>

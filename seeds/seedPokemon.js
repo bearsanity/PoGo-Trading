@@ -15,7 +15,8 @@ async function getRawPokemon() {
     return rawPokemon;
     
     } catch(err) {            
-        console.error('There was an error fetching the pokemon');
+        console.error('There was an error fetching the pokemon:', err);
+        throw err;
     };
 };
 
@@ -29,6 +30,7 @@ async function getPokemonDetails(rawPokemon) {
         return response;
     } catch(err) {
         console.error('There was an error fetching details');
+        throw err;
     };
 };
 
