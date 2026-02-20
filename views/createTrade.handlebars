@@ -4,18 +4,18 @@
   {{!-- form action is where to send the data, method is how to send the data --}}
   <form action="/create-trade" method="POST"> 
     <label for="username"> Username:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" id="username" name="username" required><br>
 
     {{!--Loops through the pokemon const set inside the get route in homeRoutes  --}}
     <label for="pokemon_wanted"> Pokemon Wanted:</label><br>
-    <select id="pokemon_wanted" name="pokemon_wanted" multiple>
+    <select id="pokemon_wanted" name="pokemon_wanted" multiple required>
     {{#each pokemon}}
       <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}
     </select><br>
 
     <label for="pokemon_offered"> Pokemon Offered:</label><br>
-    <select id="pokemon_offered" name="pokemon_offered" multiple>
+    <select id="pokemon_offered" name="pokemon_offered" multiple required>
     {{#each pokemon}}
       <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}

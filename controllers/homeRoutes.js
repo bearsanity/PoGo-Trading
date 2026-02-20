@@ -96,7 +96,7 @@ router.post('/create-trade', async (req, res) => {
         });
     };
     
-    // Send back to homepage (temporary)
+    // Send back to homepage
     res.redirect('/');
     
   } catch (err) {

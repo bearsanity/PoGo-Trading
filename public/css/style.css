@@ -37,6 +37,16 @@ header h1 {
   text-align: center;
 }
 
+.header-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-link:hover h1 {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
 /* Main content */
 main {
   max-width: 1200px;
@@ -45,7 +55,8 @@ main {
 }
 
 /* Search and Create sections */
-.search-section, .create-section {
+.search-section,
+.create-section {
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
@@ -55,23 +66,30 @@ main {
 
 .search-section {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.search-section input {
+.search-section form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.search-section select,
+.search-section .choices {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
 }
 
-.search-section input:focus {
-  outline: none;
-  border-color: var(--pokemon-blue);
+.create-section {
+  text-align: center;
 }
 
-button, .create-section a button {
+/* Buttons */
+button,
+.create-section a button {
   background: var(--pokemon-yellow);
   color: var(--pokemon-dark-blue);
   border: 3px solid var(--pokemon-dark-blue);
@@ -90,8 +108,12 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.create-section {
-  text-align: center;
+/* Search button override */
+.search-section button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  width: auto;
 }
 
 /* Recent Trades */
@@ -137,14 +159,25 @@ button:hover {
   margin: 0.5rem 0;
 }
 
+.trade-card a {
+  color: var(--pokemon-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.trade-card a:hover {
+  text-decoration: underline;
+  color: var(--pokemon-dark-blue);
+}
+
 /* Pokemon List with Sprites */
 .pokemon-list {
   display: flex;
-  flex-direction: column; /* Stack vertically */
-  flex-wrap: wrap; /* Then wrap to next column */
+  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0.5rem 0 1rem 0;
-  max-height: 150px; /* Height of 2 pokemon items (adjust as needed) */
+  max-height: 150px;
 }
 
 .pokemon-item {
@@ -152,7 +185,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: auto; /* Let items take natural width */
+  width: auto;
 }
 
 .pokemon-sprite {
@@ -164,7 +197,33 @@ button:hover {
 .pokemon-item span {
   font-size: 0.75rem;
   text-transform: capitalize;
-  white-space: nowrap; /* Prevent name wrapping */
+  white-space: nowrap;
+}
+
+/* Profile Page */
+.profile-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.profile-container h2 {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  color: var(--pokemon-blue);
+  margin-bottom: 0;
+}
+
+.profile-trades {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 /* Form Container */
@@ -226,7 +285,7 @@ form button[type="submit"] {
   font-size: 1.1rem;
 }
 
-/* Choices.js Styling */
+/* Choices.js styling */
 .choices {
   margin-bottom: 1rem;
 }
@@ -246,80 +305,17 @@ form button[type="submit"] {
   text-transform: capitalize;
 }
 
-.trade-card a {
-  color: var(--pokemon-blue);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.trade-card a:hover {
-  text-decoration: underline;
-  color: var(--pokemon-dark-blue);
-}
-
-/* Profile Page */
-.profile-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.profile-container h2 {
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  color: var(--pokemon-blue);
-  margin-bottom: 0;
-}
-
-.profile-trades {
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-.header-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.header-link:hover h1 {
-  transform: scale(1.02);
-  transition: transform 0.2s ease;
-}
-
+/* Responsive Design */
 @media (max-width: 1200px) {
+  .recent-trades,
   .profile-trades {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 900px) {
+  .recent-trades,
   .profile-trades {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .profile-trades {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Responsive - adjust grid columns */
-@media (max-width: 1200px) {
-  .recent-trades {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .recent-trades {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -343,7 +339,8 @@ form button[type="submit"] {
 }
 
 @media (max-width: 600px) {
-  .recent-trades {
+  .recent-trades,
+  .profile-trades {
     grid-template-columns: 1fr;
   }
 }
