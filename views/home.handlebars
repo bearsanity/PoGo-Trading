@@ -8,12 +8,10 @@
     </select>
     <button type="submit">Search</button>
   </form>
-</div>
-
-<div class="create-section">
-    <a href="/create-trade">
-        <button>Post a Trade</button>
-    </a>
+  
+  <a href="/create-trade">
+    <button>Post a Trade</button>
+  </a>
 </div>
 
 {{!-- Adds the cards for the recent trades to the home page --}}
@@ -60,8 +58,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>
-  const searchChoices = new Choices('#search_pokemon', {
-    searchEnabled: true,
-    searchPlaceholderValue: 'Type to search...'
+  document.addEventListener('DOMContentLoaded', function() {
+    const element = document.querySelector('#search_pokemon');
+    if (element) {
+      const searchChoices = new Choices(element, {
+        searchEnabled: true,
+        searchPlaceholderValue: 'Type to search...'
+      });
+      console.log('Choices.js initialized!');
+    } else {
+      console.error('Could not find #search_pokemon element');
+    }
   });
 </script>

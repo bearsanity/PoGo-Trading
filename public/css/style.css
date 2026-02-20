@@ -54,39 +54,6 @@ main {
   padding: 0 1rem;
 }
 
-/* Search and Create sections */
-.search-section,
-.create-section {
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;
-}
-
-.search-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-section form {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  width: 100%;
-  max-width: 700px;
-}
-
-.search-section select,
-.search-section .choices {
-  flex: 1;
-}
-
-.create-section {
-  text-align: center;
-}
-
 /* Buttons */
 button,
 .create-section a button {
@@ -108,13 +75,54 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Search button override */
-.search-section button {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  width: auto;
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  gap: 1rem;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
 }
+
+.search-section form {
+  display: flex !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-section form .choices {
+  flex: 1 1 auto !important;
+  min-width: 400px !important;
+  height: 48px !important;
+  align-self: center !important; /* FORCE VERTICAL CENTER */
+  margin: 0 !important; /* REMOVE ANY MARGINS */
+}
+
+.search-section form .choices__inner {
+  height: 48px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0.75rem !important; /* MATCH BUTTON PADDING */
+}
+
+.search-section form button,
+.search-section > a button {
+  padding: 0.75rem 1.5rem !important;
+  font-size: 1rem !important;
+  height: 48px !important;
+}
+
+.search-section > a {
+  flex-shrink: 0;
+}
+
 
 /* Recent Trades */
 .recent-trades {
