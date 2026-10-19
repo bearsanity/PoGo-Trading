@@ -6,6 +6,14 @@
 
 ## Description
 
+========================================================================
+
+**This is currently being completely rebuilt with user accounts and proximity groups to function better. New version will be released at a later date**
+
+========================================================================
+
+
+
 PoGo Trading Hub is a full-stack web application designed to help Pokemon GO players coordinate trades. Users can create trade listings specifying which Pokemon they're offering and which Pokemon they want in return. The app features a searchable database of all 1025 Pokemon (Generations 1-9), and a clean, Pokemon HOME-inspired interface.
 The application uses a PostgreSQL database with complex many-to-many relationships through junction tables, allowing users to list multiple Pokemon in both their "offering" and "wanted" categories. This enables traders to find exactly what they're looking for and connect with other players in their community.
 
